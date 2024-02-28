@@ -39,8 +39,26 @@ def diferencia(A, B):
 def complemento(universo, conjunto):
     return diferencia(universo, conjunto)
 
-root = tk.Tk()
+def cardinalidad(conjunto):
+    return "El conjunto tiene una carnidalidad de: "+str (len(conjunto))
 
+def isSubconjunto(A,B): 
+    for elemento in A:
+        if elemento not in B:
+            return "El primer conjunto no es subconjunto del segundo"
+    return "El primer conjunto es subconjunto del segundo"
+
+def disjuntos(A,B):
+    for elemento in A:
+        if elemento in B:
+            return "Los conjuntos no son disjuntos"
+    return "Los conjuntos son disjuntos"
+root = tk.Tk()
+cardiA_label = tk.Label(root)
+cardiB_label = tk.Label(root)
+cardiC_label = tk.Label(root)
+subco_label = tk.Label(root)
+dis_label = tk.Label(root)
 union_label = tk.Label(root) 
 inter_label = tk.Label(root)
 diff_label = tk.Label(root)
@@ -80,11 +98,21 @@ def on_button_click():
     inter_label.config(text="Intersección: " + str(interseccion_result))
     diff_label.config(text="Diferencia: " + str(diferencia_result))
     comp_label.config(text="Complemento: " + str(complemento_result))
+    cardiA_label.config(text="Cardinalidad del conjunto A es : " + str(cardinalidad(A))) 
+    cardiB_label.config(text="Cardinalidad del conjunto B es : " + str(cardinalidad(B)))
+    cardiC_label.config(text="Cardinalidad del conjunto C es : " + str(cardinalidad(C)))  
+    subco_label.config(text="Subconjunto: " + str(isSubconjunto(A,C)) )
+    dis_label.config(text="Disconjunto: " + str(disjuntos(A,B))) 
 
     union_label.pack()
     inter_label.pack()
     diff_label.pack()
     comp_label.pack()
+    cardiA_label.pack()
+    cardiB_label.pack()
+    cardiC_label.pack()
+    subco_label.pack()
+    dis_label.pack()
 
     # Realizar operaciones y configurar el diagrama de Venn
     AB = list(set(A_list) & set(B_list))
